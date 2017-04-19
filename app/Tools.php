@@ -11,7 +11,7 @@ class Tools
 {
     /**
      * @ToolsAnnotation(
-     *     name="md5Bro",
+     *     name="md5",
      *     serve=true,
      *     description="Hash string using md5 algorithm"
      * )
