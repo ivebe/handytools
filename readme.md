@@ -1,4 +1,4 @@
-<p align="left"><img src="https://laravel.com/assets/img/components/logo-laravel.svg" style="height:40px"> <img src="https://vuejs.org/images/logo.png" style="width:40px; height: 40px;"></p>
+<p align="left"><img src="https://laravel.com/assets/img/components/logo-laravel.svg" height="40"> <img src="https://vuejs.org/images/logo.png" width="40" height="40"></p>
 
 
 ## About
