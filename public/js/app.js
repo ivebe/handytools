@@ -22740,10 +22740,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPasswd: function getPasswd() {
 
             var vm = this;
+            if (!this.action) {
+                this.length = "";
+            }
 
             vm.passwd = 'Processing...';
 
-            axios.get('/api/passwd/get', {}).then(function (response) {
+            axios.get('/api/passwd/get', {
+                params: {
+                    length: this.length,
+                    specialChar: this.specialChar
+                }
+            }).then(function (response) {
                 vm.passwd = response.data.passwd;
             }).catch(function (error) {
                 vm.passwd = 'Error! Could not reach the API. ' + error;

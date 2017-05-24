@@ -54,10 +54,17 @@ export default {
             function () {
 
                 var vm = this
+                if(!this.action){
+                  this.length = "";
+                }
 
                 vm.passwd = 'Processing...';
 
                 axios.get('/api/passwd/get',{
+                  params:{
+                    length: this.length,
+                    specialChar: this.specialChar
+                  }
                 })
                 .then(function (response) {
                     vm.passwd  = response.data.passwd
