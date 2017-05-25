@@ -4,7 +4,7 @@
             <label>Input</label>
             <input v-model="input" type="text" class="form-control"><br>
             <label>String length:</label>
-            <p>{{strlen}}</p>
+            <p class="output">{{strlen}}</p>
         </div>
     </form>
 </template>
@@ -20,41 +20,22 @@ export default {
         }
     },
 
-    mounted(){
-        this.getText()
-    },
     watch:{
       input: function(value){
         this.strlen = value.length;
         if(this.strlen === 0){
           this.strlen = '';
         }
+        if(this.input ===''){
+          this.strlen = 0;
+        }
 
       }
-    },
-
-    methods: {
-        getText:
-            function () {
-
-                var vm = this
-
-                vm.text = 'Processing...';
-
-                axios.get('/api/strlen/get',{
-                })
-                .then(function (response) {
-                    vm.text  = response.data.text
-                })
-                .catch(function (error) {
-                    vm.text = 'Error! Could not reach the API. ' + error
-                })
-            }
     }
 }
 </script>
 <style media="screen">
-  .form-width{
-    width: 7%;
+  .output{
+    font-size: 20px;
   }
 </style>

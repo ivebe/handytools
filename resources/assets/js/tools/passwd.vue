@@ -10,7 +10,7 @@
               <label>Special Characters</label><br>
               <switches v-model="specialChar" :selected="specialChar" :label="specChar_label" type-bold="true" theme="bulma" color="red"></switches>
           </div>
-          <button class="btn btn-primary" @click.prevent="getPasswd" :disabled="isFloat(length)">New Password</button>
+          <button class="btn btn-primary" @click.prevent="getPasswd" :disabled="isFloat(length) || this.length<=0">New Password</button>
         </div>
         <div v-else>
           <div class="form-group">
@@ -32,7 +32,7 @@ export default {
         return {
             length: null,
             passwd: '',
-            specialChar: true,
+            specialChar: false,
             action: false
         }
     },
@@ -56,6 +56,7 @@ export default {
                 var vm = this
                 if(!this.action){
                   this.length = "";
+                  this.specialChar = false;
                 }
 
                 vm.passwd = 'Processing...';
