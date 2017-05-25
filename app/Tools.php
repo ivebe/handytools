@@ -97,8 +97,30 @@ class Tools
 
     public function _passwd( Request $request )
     {
+        if($request->length == '')
+            $lenght = 32;
+        else
+            $lenght = $request->length;
+
+        if($request->specialChar == 'true')
+        {
+            $specChar = str_split("#$%^&*()+=-[]';,./{}|:<>?~");
+            shuffle($specChar);
+            $count = round($lenght/3);
+            $string = str_split(str_random($lenght-$count));
+            $string = array_merge($string,array_slice($specChar, 0, $count));
+            shuffle($string);
+            $string = implode($string);
+        }
+        else
+        {
+            $string = str_random($lenght);
+        }
+
+
+
         return response()->json([
-            'passwd' => utf8_encode( str_random(32) )
+            'passwd' => utf8_encode($string)
         ]);
     }
 
