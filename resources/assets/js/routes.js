@@ -8,5 +8,6 @@ module.exports = {
         { path: '/urlencdec', component: require('./tools/urlencdec.vue')},
         { path: '/strlen', component: require('./tools/strlen.vue')},
         { path: '/word_counter', component: require('./tools/word_counter.vue')},
+        { path: '/comparefiles', component: require('./tools/comparefiles.vue')},
     ]
 };
