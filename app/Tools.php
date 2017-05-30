@@ -150,4 +150,25 @@ class Tools
             'data' => utf8_encode( urldecode( $request->get('data')) ),
         ]);
     }
+
+    /**
+    * @ToolsAnnotation(
+    *     name="comparefiles",
+    *     serve=true,
+    *     description="diff"
+    * )
+    */
+    public function comparefiles()
+    {
+    }
+    /**
+    * @param Request $request
+    * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+    */
+    public function _comparefiles( Request $request )
+    {
+    return response()->json([
+    'text' => utf8_encode('blabla')
+    ]);
+    }
 }

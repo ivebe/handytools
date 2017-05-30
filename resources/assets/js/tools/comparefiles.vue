@@ -12,7 +12,7 @@
                 <textarea v-model="textTwo" class="form-control form-height"></textarea>
             </div>
           </div>
-          <button class="btn btn-primary" @click="compareText">Compare</button>
+          <button class="btn btn-primary" @click.stop.prevent="compareText">Compare</button>
         </div>
       </form>
       <div>
@@ -40,9 +40,12 @@ export default {
 
                 var vm = this;
 
-                axios.post('/api/comparefiles/post',{
-                  textTwo: textTwo,
-                  textTwo: textTwo
+                axios.get('/api/comparefiles/get',{
+                  params:{
+                    textOne: vm.textOne,
+                    textTwo: vm.textTwo
+                  }
+                  
                 })
                 .then(function (response) {
                     vm.responseText  = response.data.text
