@@ -22617,8 +22617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
+/* WEBPACK VAR INJECTION */(function($) {//
 //
 //
 //
@@ -22647,8 +22646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             textOne: '',
-            textTwo: '',
-            responseText: ''
+            textTwo: ''
         };
     },
 
@@ -22665,13 +22663,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
 
             }).then(function (response) {
-                vm.responseText = response.data.text;
+                $('#difference').append(response.data.text);
             }).catch(function (error) {
                 vm.responseText = 'Error! Could not reach the API. ' + error;
             });
         }
     }
 });
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 
 /***/ }),
 /* 42 */
@@ -25486,7 +25485,7 @@ exports.push([module.i, "\n.output{\n  font-size: 20px;\n}\n", ""]);
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n.form-height{\n  height: 200px;\n}\n", ""]);
+exports.push([module.i, "\n.form-height{\n  height: 200px!important;\n}\n.diffDeleted{\n  color: #24292E;\n  background: #F1CBCB;\n}\n.diffInserted{\n  color: #24292E;\n  background: #A6F3A6;\n}\n", ""]);
 
 /***/ }),
 /* 55 */
@@ -43228,7 +43227,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.compareText($event)
       }
     }
-  }, [_vm._v("Compare")])])]), _vm._v(" "), _c('div', [_c('p', [_vm._v(_vm._s(_vm.responseText))])])])
+  }, [_vm._v("Compare")])])]), _vm._v(" "), _c('div', {
+    attrs: {
+      "id": "difference"
+    }
+  })])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

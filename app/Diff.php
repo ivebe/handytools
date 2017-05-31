@@ -307,7 +307,7 @@ class Diff
     {
 
         // initialise the HTML
-        $html = $indentation . "<table class=\"diff\">\n";
+        $html = $indentation . "<table class=\"table\">\n";
 
         // loop over the lines in the diff
         $index = 0;

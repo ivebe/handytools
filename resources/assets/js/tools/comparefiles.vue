@@ -15,9 +15,8 @@
           <button class="btn btn-primary" @click.stop.prevent="compareText">Compare</button>
         </div>
       </form>
-      <div>
+      <div id="difference">
         <!-- // display difference here -->
-        {{responseText}}
       </div>
     </div>
 </template>
@@ -29,8 +28,7 @@ export default {
     data(){
         return {
             textOne: '',
-            textTwo: '',
-            responseText:''
+            textTwo: ''
         }
     },
 
@@ -45,10 +43,10 @@ export default {
                     textOne: vm.textOne,
                     textTwo: vm.textTwo
                   }
-                  
+
                 })
                 .then(function (response) {
-                    vm.responseText  = response.data.text
+                    $('#difference').append(response.data.text);
                 })
                 .catch(function (error) {
                     vm.responseText = 'Error! Could not reach the API. ' + error
@@ -59,6 +57,14 @@ export default {
 </script>
 <style>
   .form-height{
-    height: 200px;
+    height: 200px!important;
+  }
+  .diffDeleted{
+    color: #24292E;
+    background: #F1CBCB;
+  }
+  .diffInserted{
+    color: #24292E;
+    background: #A6F3A6;
   }
 </style>
