@@ -20,5 +20,22 @@
     "vue-router": "^2.5.3",
     "vue-switches": "^1.1.4",
     "vuex": "^2.2.1"
-  }
+  },
+  "name": "handytools",
+  "description": "<p align=\"left\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\" height=\"40\"> <img src=\"https://vuejs.org/images/logo.png\" width=\"40\" height=\"40\"></p>",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t0mic/handytools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t0mic/handytools/issues"
+  },
+  "homepage": "https://github.com/t0mic/handytools#readme"
 }

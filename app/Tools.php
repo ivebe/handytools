@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Http\Request;
 use App\Annotations\ToolsAnnotation;
-
+use App\Diff;
 
 
 class Tools
@@ -16,7 +16,7 @@ class Tools
      *     description="Hash string using md5 algorithm"
      * )
      */
-    public function md5( Request $request )
+    public function md5(Request $request)
     {
     }
 
@@ -24,7 +24,7 @@ class Tools
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function _md5( Request $request )
+    public function _md5(Request $request)
     {
         return response()->json([
             'md5' => md5($request->get('input'))
@@ -39,17 +39,18 @@ class Tools
      * )
      */
     public function bcrypt()
-    {}
+    {
+    }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function _bcrypt( Request $request )
+    public function _bcrypt(Request $request)
     {
         return response()->json([
-            'md5'   => md5($request->get('input')),
-            'hash'  => \Hash::make($request->get('input')),
+            'md5' => md5($request->get('input')),
+            'hash' => \Hash::make($request->get('input')),
             'match' => \Hash::check($request->get('input'), $request->get('hash'))
         ]);
     }
@@ -69,15 +70,15 @@ class Tools
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function _base64( Request $request )
+    public function _base64(Request $request)
     {
-        if( $request->get('action') == "true" )
+        if ($request->get('action') == "true")
             return response()->json([
                 'data' => base64_encode($request->get('data')),
             ]);
 
         return response()->json([
-            'data' => utf8_encode( base64_decode( $request->get('data')) ),
+            'data' => utf8_encode(base64_decode($request->get('data'))),
         ]);
     }
 
@@ -91,32 +92,28 @@ class Tools
     public function passwd()
     {
         return response()->json([
-            'passwd' => utf8_encode( str_random(8) )
+            'passwd' => utf8_encode(str_random(8))
         ]);
     }
 
-    public function _passwd( Request $request )
+    public function _passwd(Request $request)
     {
-        if($request->length == '')
+        if ($request->length == '')
             $lenght = 32;
         else
             $lenght = $request->length;
 
-        if($request->specialChar == 'true')
-        {
+        if ($request->specialChar == 'true') {
             $specChar = str_split("#$%^&*()+=-[]';,./{}|:<>?~");
             shuffle($specChar);
-            $count = round($lenght/3);
-            $string = str_split(str_random($lenght-$count));
-            $string = array_merge($string,array_slice($specChar, 0, $count));
+            $count = round($lenght / 3);
+            $string = str_split(str_random($lenght - $count));
+            $string = array_merge($string, array_slice($specChar, 0, $count));
             shuffle($string);
             $string = implode($string);
-        }
-        else
-        {
+        } else {
             $string = str_random($lenght);
         }
-
 
 
         return response()->json([
@@ -139,36 +136,43 @@ class Tools
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function _urlencdec( Request $request )
+    public function _urlencdec(Request $request)
     {
-        if( $request->get('action') == "true" )
+        if ($request->get('action') == "true")
             return response()->json([
                 'data' => urlencode($request->get('data')),
             ]);
 
         return response()->json([
-            'data' => utf8_encode( urldecode( $request->get('data')) ),
+            'data' => utf8_encode(urldecode($request->get('data'))),
         ]);
     }
 
     /**
-    * @ToolsAnnotation(
-    *     name="comparefiles",
-    *     serve=true,
-    *     description="diff"
-    * )
-    */
+     * @ToolsAnnotation(
+     *     name="comparefiles",
+     *     serve=true,
+     *     description="diff"
+     * )
+     */
     public function comparefiles()
     {
     }
+
     /**
-    * @param Request $request
-    * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
-    */
-    public function _comparefiles( Request $request )
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function _comparefiles(Request $request)
     {
-    return response()->json([
-    'text' => utf8_encode('blabla')
-    ]);
+
+        $text1 = $request->textOne;
+        $text2 = $request->textTwo;
+        $diff = Diff::toTable(Diff::compare($text1, $text2, false));
+
+        return response()->json([
+            'text' => utf8_encode($diff)
+        //utf8_encode()
+        ]);
     }
 }

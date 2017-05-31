@@ -17,7 +17,7 @@
       </form>
       <div>
         <!-- // display difference here -->
-        <p>{{responseText}}</p>
+        {{responseText}}
       </div>
     </div>
 </template>
