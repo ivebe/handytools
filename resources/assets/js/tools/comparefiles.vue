@@ -35,7 +35,7 @@ export default {
     methods: {
         compareText:
             function () {
-
+                $('#difference').empty();
                 var vm = this;
 
                 axios.get('/api/comparefiles/get',{

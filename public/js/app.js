@@ -22653,7 +22653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         compareText: function compareText() {
-
+            $('#difference').empty();
             var vm = this;
 
             axios.get('/api/comparefiles/get', {
