@@ -159,6 +159,9 @@ VUE;
 
         Cache::forget('parser_tools_list');
 
-        $this->info('Done. Don`t forget to add route to Vue route.js file.');
+        $filePath = base_path('resources/assets/js/routes.js');
+        file_put_contents($filePath, $this->parser->compileVueRoutes());
+
+        $this->info('Done. You should run: npm run watch');
     }
 }

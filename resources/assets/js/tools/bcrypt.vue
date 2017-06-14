@@ -66,8 +66,6 @@ export default {
         getBCrypt: _.debounce(
             function () {
 
-                console.log('called 2');
-
                 var vm = this
 
                 vm.hash = '';

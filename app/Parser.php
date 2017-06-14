@@ -95,4 +95,25 @@ class Parser implements IParser
 
         return $files;
     }
+
+    public function compileVueRoutes()
+    {
+        $defaultRoutes = <<<'VUE'
+/*** THIS FILE IS AUTO-GENERATED, DO NOT MODIFY IT ***/
+module.exports = {
+    routes: [
+        { path: '/', component: require('./components/List.vue') },
+%REPLACE%
+    ]
+};
+VUE;
+
+        $replace = '';
+
+        foreach($this->getTools() as $tool){
+            $replace .= "        { path: '/{$tool['route']}', component: require('./tools/{$tool['name']}.vue') }," . PHP_EOL;
+        }
+
+        return str_replace('%REPLACE%', $replace, $defaultRoutes);
+    }
 }
