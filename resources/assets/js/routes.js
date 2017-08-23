@@ -7,6 +7,7 @@ module.exports = {
         { path: '/base64', component: require('./tools/base64.vue') },
         { path: '/passwd', component: require('./tools/passwd.vue') },
         { path: '/urlencdec', component: require('./tools/urlencdec.vue') },
+        { path: '/strlen', component: require('./tools/strlen.vue') },
 
     ]
 };
